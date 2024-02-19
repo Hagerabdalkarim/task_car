@@ -13,13 +13,13 @@
           <div class="col-lg-4 mb-4 mb-lg-0">
             <div class="testimonial-2">
               <blockquote class="mb-4">
-                <p>{{$testimonial->name}}</p>
+                <p>{{$testimonial->content}}</p>
               </blockquote>
               <div class="d-flex v-card align-items-center">
                 <img src="{{ asset('assets/images/person_1.jpg') }}" alt="Image" class="img-fluid mr-3">
                 <div class="author-name">
-                  <span class="d-block">Mike Fisher</span>
-                  <span>Owner, Ford</span>
+                  <span class="d-block">{{ $testimonial->name }}</span>
+                  <span>{{ testimonial->postion }}</span>
                 </div>
               </div>
             </div>
