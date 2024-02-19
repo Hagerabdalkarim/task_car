@@ -46,7 +46,14 @@
                       <div class="row">
                           <div class="col-sm-12">
                             <div class="card-box table-responsive">
-                    <div id="datatable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="datatable_length"><label>Show <select name="datatable_length" aria-controls="datatable" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div id="datatable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="datatable" class="table table-striped table-bordered dataTable no-footer" style="width: 100%;" role="grid" aria-describedby="datatable_info">
+                    <div id="datatable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="datatable_length"><label>Show <select name="datatable_length" aria-controls="datatable" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6">
+                      <div id="datatable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <table id="datatable" class="table table-striped table-bordered dataTable no-footer" style="width: 100%;" role="grid" aria-describedby="datatable_info">
                       <thead>
                         <tr role="row">
                           <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Category Name: activate to sort column descending" style="width: 101.2px;">Category Name</th>
@@ -57,18 +64,21 @@
 
                       <tbody>
                         
-                        
-                        
+                        @foreach($categories as $category) 
+
                       <tr role="row" class="odd">
-                          <td class="sorting_1">Category</td>
-                          <td><img src="{{ asset('admin/images/edit.png') }}" alt="Edit"></td>
-                          <td><img src="{{ asset('admin/images/delete.png') }}" alt="Delete"></td>
+                          <td class="sorting_1">{{ $category->cat_name }}</td>
+
+                            <td><a href="{{ route('edit_cat', [$category->id]) }}" >
+                            <img  src="{{ asset('admin/images/edit.png') }}" alt="Edit">
+                          </a>
+                        </td>
+                          <td><a href="{{route('delete_cat' ,[$category->id]) }}" >
+                            <img src="{{ asset('admin/images/delete.png') }}" alt="Delete">
+                        </a>
+                        </td>     
                         </tr>
-                        <tr role="row" class="even">
-                          <td class="sorting_1">Category</td>
-                          <td><img src="{{ asset('admin/images/edit.png') }}" alt="Edit"></td>
-                          <td><img src="{{ asset('admin/images/delete.png') }}" alt="Delete"></td>
-                        </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>

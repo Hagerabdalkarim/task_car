@@ -1,11 +1,10 @@
-@extends('Admin.layouts.pages')
+  @extends('Admin.layouts.pages')
 @section('content')
-
 <div class="right_col" role="main" style="min-height: 714.8px;">
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Manage Categories</h3>
+							<h3>Manage Users</h3>
 						</div>
 
 						<div class="title_right">
@@ -24,7 +23,7 @@
 						<div class="col-md-12 col-sm-12 ">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Add Category</h2>
+									<h2> User</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 										</li>
@@ -42,37 +41,14 @@
 									</ul>
 									<div class="clearfix"></div>
 								</div>
-								<div class="x_content">
-									<br>
-									
-                                    <form id="demo-form2"  method="post" data-parsley-validate="" action="{{ route('store_cat') }}" class="form-horizontal form-label-left" novalidate="">
-										 @csrf
-										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="add-category">Add Category <span class="required">*</span>
-											</label>
-											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="add-category" required="required" class="form-control "name="cat_name">
-												  @error('cat_name')
-                                                 {{ $message }}
-                                                  @enderror
-											</div>
-										</div>
-										
-										<div class="ln_solid"></div>
-										<div class="item form-group">
-											<div class="col-md-6 col-sm-6 offset-md-3">
-												<button class="btn btn-primary" type="button">Cancel</button>
-												<button type="submit" class="btn btn-success">Add</button>
-											</div>
-										</div>
-
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</div>
-
+  
+<div class="container mt-5">
+    <h1 class="display-4">{{$team->name}}</h1>
+    <h5 class="text-muted">{{$team->username}}</h5>
+    <h5 class="text-muted">{{$team->email}}</h5>
+    <h5 class="text-muted">Created at: {{$team->created_at}}</h5>
+    <h5 class="{{($car->published) ? 'text-success' : 'text-danger'}}">
+        {{($team->published) ? "published" : "Not published"}}
+    </h5>
+</div>
 @endsection

@@ -47,31 +47,42 @@
                             <div class="card-box table-responsive">
                     <div id="datatable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="datatable_length"><label>Show <select name="datatable_length" aria-controls="datatable" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div id="datatable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="datatable" class="table table-striped table-bordered dataTable no-footer" style="width: 100%;" role="grid" aria-describedby="datatable_info">
                       <thead>
-                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 36.2px;">Name</th><th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 52.2px;">Position</th><th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Published: activate to sort column ascending" style="width: 63.2px;">Published</th><th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Edit: activate to sort column ascending" style="width: 25.2px;">Edit</th><th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Delete: activate to sort column ascending" style="width: 40px;">Delete</th></tr>
+                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 36.2px;">Name</th>
+                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 52.2px;">Position</th>
+                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 52.2px;">Content</th> 
+                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Published: activate to sort column ascending" style="width: 63.2px;">Active</th>
+                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Published: activate to sort column ascending" style="width: 63.2px;">Image</th>
+                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Edit: activate to sort column ascending" style="width: 25.2px;">Edit</th>
+                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Delete: activate to sort column ascending" style="width: 40px;">Delete</th></tr>
                       </thead>
                       
                       <tbody>        
+                         @foreach($testimonials as $testimonial) 
                       <tr role="row" class="odd">
-                          <td class="sorting_1">Car 1</td>
-                          <td>150</td>
-                          <td>Yes</td>
-                          <td><img src="{{ asset('admin/images/edit.png') }}" alt="Edit"></td>
-                          <td><img src="{{ asset('admin/images/delete.png') }}" alt="Delete"></td>
+                          <td class="sorting_1">{{$testimonial->name}}</td>
+                          <td>{{$testimonial->postion}}</td>
+                          <td>{{$testimonial->content}}</td>
+                          <td>@if($testimonial->active)
+                            yes
+                            @else
+                            No
+                            @endif
+                          </td>
+                          <td>{{ $testimonial->image }}</td>
+
+                          <td><a href="{{ route('edit_test', [$testimonial->id]) }}" >
+                            <img  src="{{ asset('admin/images/edit.png') }}" alt="Edit">
+                          </a>
+                        </td>
+                        <td><a href="{{ route('delete_test', [$testimonial->id]) }}" >
+                          <img src="{{ asset('admin/images/delete.png') }}" alt="Delete">
+                          </a>
+                        </td>
+                         
                         </tr>
-                        <tr role="row" class="even">
-                          <td class="sorting_1">Car 2</td>
-                          <td>200</td>
-                          <td>Yes</td>
-                          <td><img src="{{ asset('admin/images/edit.png') }}" alt="Edit"></td>
-                          <td><img src="{{ asset('admin/images/delete.png') }}" alt="Delete"></td>
-                        </tr>
-                        <tr role="row" class="odd">
-                          <td class="sorting_1">Car 10</td>
-                          <td>250</td>
-                          <td>Yes</td>
-                          <td><img src="{{ asset('admin/images/edit.png') }}" alt="Edit"></td>
-                          <td><img src="{{ asset('admin/images/delete.png') }}" alt="Delete"></td>
-                        </tr></tbody>
+                       
+                        @endforeach
+                      </tbody>
                     </table>
                   </div>
                 </div>

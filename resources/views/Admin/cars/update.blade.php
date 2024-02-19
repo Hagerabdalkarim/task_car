@@ -7,7 +7,6 @@
 						<div class="title_left">
 							<h3>Manage Cars</h3>
 						</div>
-
 						<div class="title_right">
 							<div class="col-md-5 col-sm-5  form-group pull-right top_search">
 								<div class="input-group">
@@ -24,7 +23,7 @@
 						<div class="col-md-12 col-sm-12 ">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Add Car</h2>
+									<h2>Update Car</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 										</li>
@@ -44,31 +43,92 @@
 								</div>
 								<div class="x_content">
 									<br>
-									<form id="demo-form2"  method="post" data-parsley-validate="" action="{{ route('update_car', [$car->id]) }}" class="form-horizontal form-label-left" novalidate="">
+								<form id="demo-form2"  method="post" data-parsley-validate="" action="{{ route('update_car', [$car->id]) }}" class="form-horizontal form-label-left" enctype="multipart/form-data" novalidate="">
 										@csrf
 										 @method('put')
 										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="title">Title <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="title" required="required" class="form-control " name="title">
+												<input type="text" id="title" required="required" class="form-control " name="title" value="{{ old('title') }}">
 												  @error('title')
                                                  {{ $message }}
                                                   @enderror
 											</div>
 										</div>
+								      <div class="item form-group">
+                                      <label class="col-form-label col-md-3 col-sm-3 label-align" for="category">Category <span class="required">*</span>
+									    </label>
+                                       <select name="category_id" id="">
+                                          <option value="">Select Category</option>
+                                            @foreach($categories as $category)
+                                          <option value="{{ $category->id }}" @selected($category->id == $car->category_id) >{{ $category->cat_name }}</option>
+                                            @endforeach
+                                         </select>
+                                          @error('category_id')
+                                         {{ $message }}
+                                          @enderror
+                                           </div>
+											<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="content">Content <span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<textarea id="content" name="content" required="required" class="form-control">{{ old('content') }}</textarea>
+												  @error('content')
+                                                 {{ $message }}
+                                                   @enderror
+											</div>
+										</div>   
+											<div class="item form-group">
+											<label for="luggage" class="col-form-label col-md-3 col-sm-3 label-align">Luggage <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 ">
+												<input id="luggage" class="form-control" type="number"min="1" max="6" name="luggage" required="required" value="{{ old('luggage') }}">
+												  @error('luggage')
+                                                 {{ $message }}
+                                                   @enderror
+											</div>
+										</div>
+										<div class="item form-group">
+											<label for="doors" class="col-form-label col-md-3 col-sm-3 label-align">Doors <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 ">
+												<input id="doors" class="form-control" type="number"min="1" max="4" name="doors" required="required" value="{{ old('doors') }}">
+												  @error('doors')
+                                                 {{ $message }}
+                                                   @enderror
+											</div>
+										</div>
+										<div class="item form-group">
+											<label for="passengers" class="col-form-label col-md-3 col-sm-3 label-align">Passengers <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 ">
+												<input id="passenger" class="form-control" type="number"min="1" max="8" name="passenger" required="required" value="{{ old('passenger') }}">
+												  @error('passenger')
+                                                 {{ $message }}
+                                                   @enderror
+											</div>
+										</div>
 										<div class="item form-group">
 											<label for="price" class="col-form-label col-md-3 col-sm-3 label-align">Price <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 ">
-											<input  for="price" id="price" class="form-control" type="number" step="0.01" value="0.00" name="price" required="required">
-												
-												  @error('price')
+											<input  for="price" id="price" class="form-control" type="number" step="0.01" value="{{ old('price','0.00') }}"name="price" required="required">
+                                               @error('price')
+                                                 {{ $message }}
+                                                   @enderror
+											</div>
+										</div>
+										  
+	                                      <div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="image">Image <span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input type="file" id="image" name="image" required="required" class="form-control">
+												<img src="{{ asset('admin/images/' . $car->image ) }}" alt="car" style="width:200px;">
+												  @error('image')
                                                  {{ $message }}
                                                    @enderror
 											</div>
 										</div>
 										  <div class="form-check">
-										<input class="form-check-input" type="checkbox" name="active" id="flexCheckChecked" checked />
+										<input class="form-check-input" type="checkbox" name="active" id="active" @checked($car->active) checked />
 										<label class="form-check-label" for="flexCheckChecked" name="active">Active</label>
 									</div>
 										<div class="ln_solid"></div>
@@ -86,8 +146,5 @@
 					</div>
 
 				</div>
-			</div>
-
-
-    
+			</div> 
 @endsection

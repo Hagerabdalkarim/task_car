@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Car;
+use App\Models\Category;
+use App\Traits\Common;
 
 class CarController extends Controller
 {
+    use Common;
 
     public function index()
     {
@@ -19,8 +22,8 @@ class CarController extends Controller
      */
     public function create()
     {
-       
-        return view('Admin.cars.add');
+        $categories= Category::get();
+        return view('Admin.cars.add', compact('categories'));
     }
 
     /**
@@ -33,33 +36,26 @@ class CarController extends Controller
         $data = $request->validate([
              'title'=>'required|string|max:50',
              'price'=>'required|numeric|between:0,999999.99',  
-        ],$messages);
-        //      'image' => 'required|mimes:png,jpg,jpeg|max:2048',
-        //      'category_id'=> 'required',
-           
-        // $fileName = $this->uploadFile($request->image, 'assets/images');    
-        // $data['image'] = $fileName;
+             'doors' => 'required|integer|between:1,4',
+             'luggage' => 'required|integer|between:1,6',
+             'passenger' => 'required|integer|between:1,8',
+             'content'=> 'required|string',
+             'category_id'=> 'required|exists:categories,id',
+             'image' => 'required|mimes:png,jpg,jpeg|max:2048',
+        ],$messages);  
+
+        $fileName = $this->uploadFile($request->image, 'admin/images');    
+        $data['image'] = $fileName;
         $data['active'] = isset($request->active);
         Car::create($data);
         return redirect('cars');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    // public function show(string $id)
-    // {
-    //     $car = Car::findOrFail($id);
-    //     return view('showCar', compact('car'));
-    // }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $car = Car::findOrFail($id);
-        return view('Admin.cars.update', compact('car'));
+         $categories= Category::get();
+        return view('Admin.cars.update', compact('car','categories'));
     }
 
     /**
@@ -69,23 +65,25 @@ class CarController extends Controller
     {
         $messages = $this->messages();
         $data = $request->validate([
-             'title'=>'required|string|max:50',
+            'title'=>'required|string|max:50',
              'price'=>'required|numeric|between:0,999999.99',  
-             
-            //  'image' => 'sometimes|mimes:png,jpg,jpeg|max:2048',
-            //  'category_id' => 'required',
+             'doors' => 'required|integer|between:1,4',
+             'luggage' => 'required|integer|between:1,6',
+             'passenger' => 'required|integer|between:1,8',
+             'content'=> 'required|string|max:100',
+             'category_id'=> 'required',
+             'image' => 'required|mimes:png,jpg,jpeg|max:2048',
             ],$messages);
 
-        // if($request->hasFile('image')){
-        //     $fileName = $this->uploadFile($request->image, 'assets/images');  
-        //     $data['image'] = $fileName;
-        //     unlink("assets/images/" . $request->oldImage);
-        // }
+        if($request->hasFile('image')){
+            $fileName = $this->uploadFile($request->image, 'admin/images');  
+            $data['image'] = $fileName;
+            unlink("admin/images/" . $request->oldImage);
+        }
         
         $data['active'] = isset($request->active);
         Car::where('id', $id)->update($data);
         return redirect('cars');
-
       
     }
 
@@ -98,17 +96,20 @@ class CarController extends Controller
         return redirect('cars');
     }
 
-  
-    
-
     public function messages(){
         return [
             'title.required'=>'this title is required',
             'title.string'=>'Should be string',
             'price.required'=> ' this price is required',
-            // 'image.required'=> 'Please be sure to select an image',
-            // 'image.mimes'=> 'Incorrect image type',
-            // 'image.max'=> 'Max file size exceeded',
+            'image.required'=> 'Please be sure to select an image',
+            'image.mimes'=> 'Incorrect image type',
+            'image.max'=> 'Max file size exceeded',
+            'doors.required'=>'this field is required',
+            'luggage.required'=>'this field is required',
+            'passenger.required'=>'this field is required',
+            'content.required'=>'this field is required',
+            'content.string'=>'Should be string',
+            'category_id.required'=>'this field is required',
             ];
     }
 }

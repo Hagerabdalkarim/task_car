@@ -74,7 +74,13 @@
                       <thead>
                      <tr role="row">
                       <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Title: activate to sort column ascending" style="width: 88.2px;">Title</th>
+                      <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Title: activate to sort column ascending" style="width: 88.2px;">Categories</th>
+                      <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Title: activate to sort column ascending" style="width: 88.2px;">Passengers</th>
+                      <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Title: activate to sort column ascending" style="width: 88.2px;">Content</th>
+                      <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Title: activate to sort column ascending" style="width: 88.2px;">Luggages</th>
+                      <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Title: activate to sort column ascending" style="width: 88.2px;">Doors</th>
                       <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 98.2px;">Price</th>
+                      <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 98.2px;">Images</th>
                       <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Active: activate to sort column ascending" style="width: 111.2px;">Active</th>
                       <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Edit: activate to sort column ascending" style="width: 84.2px;">Edit</th>
                       <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Delete: activate to sort column descending" style="width: 111px;" aria-sort="ascending">Delete</th>
@@ -85,7 +91,15 @@
                           @foreach($cars as $car)
                         <tr>
                           <td>{{ $car->title }}</td>
-                          <td>250 {{ $car->price }}</td>
+                          <td>{{$car->category->cat_name}}</td>
+                          <td>{{$car->passenger}}</td>
+                          <td>{{$car->content}}</td>
+                      
+                          <td>{{$car->luggage}}</td>
+                          <td>{{$car->doors}}</td>
+                          <td>{{ $car->price }}</td>
+                          <td>{{$car->image}}</td>
+                         
                           <td>@if($car->active)
                             yes
                             @else
@@ -115,7 +129,8 @@
               </div>
               <div class="col-sm-7">
                 <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
-                  <ul class="pagination"><li class="paginate_button previous disabled" id="datatable_previous">
+                  <ul class="pagination">
+                    <li class="paginate_button previous disabled" id="datatable_previous">
                     <a href="#" aria-controls="datatable" data-dt-idx="0" tabindex="0">Previous</a></li>
                    <li class="paginate_button active">
                      <a href="#" aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a></li>

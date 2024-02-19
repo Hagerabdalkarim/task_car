@@ -15,4 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+
+     Route::get('testimonials','RentController@index');
+        Route::get('about', 'RentController@about');   
+        Route::get('cars', 'RentController@cars');
+        Route::get('contact','RentController@contact');
+        Route::get('blog','RentController@blog'); 
+        Route::get('test', 'RentController@testimonial');
+     
+
 });

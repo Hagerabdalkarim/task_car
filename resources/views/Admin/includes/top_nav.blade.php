@@ -66,7 +66,7 @@
                         <a class="dropdown-item">
                           <span class="image"><img src="{{ asset('admin/images/img.jpg') }}" alt="Profile Image" /></span>
                           <span>
-                            <span>John Smith</span>
+                            <span>{{}}</span>
                             <span class="time">3 mins ago</span>
                           </span>
                           <span class="message">

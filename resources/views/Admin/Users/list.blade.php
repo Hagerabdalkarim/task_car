@@ -47,86 +47,66 @@
                       <div class="row">
                           <div class="col-sm-12">
                             <div class="card-box table-responsive">
-                    <div id="datatable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="datatable_length"><label>Show <select name="datatable_length" aria-controls="datatable" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div id="datatable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="datatable" class="table table-striped table-bordered dataTable no-footer" style="width: 100%;" role="grid" aria-describedby="datatable_info">
+                    <div id="datatable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap no-footer">
+                      <div class="row">
+                        <div class="col-sm-6">
+                      <div class="dataTables_length" id="datatable_length"><label>Show <select name="datatable_length" aria-controls="datatable" class="form-control input-sm">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option></select> entries</label>
+                      </div>
+                      </div>
+                        <div class="col-sm-6">
+                          <div id="datatable_filter" class="dataTables_filter">
+                            <label>Search:
+                              <input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <table id="datatable" class="table table-striped table-bordered dataTable no-footer" style="width: 100%;" role="grid" aria-describedby="datatable_info">
                       <thead>
-                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Registration Date: activate to sort column descending" style="width: 78.2px;">Registration Date</th><th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 36.2px;">Name</th><th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Username: activate to sort column ascending" style="width: 63.2px;">Username</th><th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 79.2px;">Email</th><th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Active: activate to sort column ascending" style="width: 39.2px;">Active</th><th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Edit: activate to sort column ascending" style="width: 25px;">Edit</th></tr>
+                        <tr role="row">
+                          <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Registration Date: activate to sort column descending" style="width: 78.2px;">Registration Date</th>
+                          <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 36.2px;">Name</th>
+                          <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Username: activate to sort column ascending" style="width: 63.2px;">Username</th>
+                          <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 79.2px;">Email</th>
+                          <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Active: activate to sort column ascending" style="width: 39.2px;">Active</th>
+                          <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Edit: activate to sort column ascending" style="width: 25px;">Edit</th></tr>
                       </thead>
 
 
                       <tbody>
-                    
+                     @foreach($teams as $team)
                       <tr role="row" class="odd">
-                          <td class="sorting_1">1 Jan 2023</td>
-                          <td>Tony Adam</td>
-                          <td>tony2023</td>
-                          <td>tony@gmail.com</td>
-                          <td>Yes</td>
-                          <td><img src="{{ asset('admin/images/edit.png') }}" alt="Edit"></td>
-                        </tr><tr role="row" class="even">
-                          <td class="sorting_1">1 Jan 2023</td>
-                          <td>Tony Adam</td>
-                          <td>tony2023</td>
-                          <td>tony@gmail.com</td>
-                          <td>Yes</td>
-                          <td><img src="{{ asset('admin/images/edit.png') }}" alt="Edit"></td>
-                        </tr><tr role="row" class="odd">
-                          <td class="sorting_1">1 Jan 2023</td>
-                          <td>Tony Adam</td>
-                          <td>tony2023</td>
-                          <td>tony@gmail.com</td>
-                          <td>Yes</td>
-                          <td><img src="{{ asset('admin/images/edit.png') }}" alt="Edit"></td>
-                        </tr><tr role="row" class="even">
-                          <td class="sorting_1">1 Jan 2023</td>
-                          <td>Tony Adam</td>
-                          <td>tony2023</td>
-                          <td>tony@gmail.com</td>
-                          <td>Yes</td>
-                          <td><img src="{{ asset('admin/images/edit.png') }}" alt="Edit"></td>
-                        </tr><tr role="row" class="odd">
-                          <td class="sorting_1">1 Jan 2023</td>
-                          <td>Tony Adam</td>
-                          <td>tony2023</td>
-                          <td>tony@gmail.com</td>
-                          <td>Yes</td>
-                          <td><img src="{{ asset('admin/images/edit.png') }}" alt="Edit"></td>
-                        </tr><tr role="row" class="even">
-                          <td class="sorting_1">1 Jan 2023</td>
-                          <td>Tony Adam</td>
-                          <td>tony2023</td>
-                          <td>tony@gmail.com</td>
-                          <td>Yes</td>
-                          <td><img src="{{ asset('admin/images/edit.png') }}" alt="Edit"></td>
-                        </tr><tr role="row" class="odd">
-                          <td class="sorting_1">1 Jan 2023</td>
-                          <td>Tony Adam</td>
-                          <td>tony2023</td>
-                          <td>tony@gmail.com</td>
-                          <td>Yes</td>
-                          <td><img src="{{ asset('admin/images/edit.png') }}" alt="Edit"></td>
-                        </tr><tr role="row" class="even">
-                          <td class="sorting_1">1 Jan 2023</td>
-                          <td>Tony Adam</td>
-                          <td>tony2023</td>
-                          <td>tony@gmail.com</td>
-                          <td>Yes</td>
-                          <td><img src="{{ asset('admin/images/edit.png') }}" alt="Edit"></td>
-                        </tr><tr role="row" class="odd">
-                          <td class="sorting_1">1 Jan 2023</td>
-                          <td>Tony Adam</td>
-                          <td>tony2023</td>
-                          <td>tony@gmail.com</td>
-                          <td>Yes</td>
-                          <td><img src="{{ asset('admin/images/edit.png') }}" alt="Edit"></td>
-                        </tr><tr role="row" class="even">
-                          <td class="sorting_1">1 Jan 2023</td>
-                          <td>Tony Adam</td>
-                          <td>tony2023</td>
-                          <td>tony@gmail.com</td>
-                          <td>Yes</td>
+                          <td class="sorting_1">{{ $team->created_at}}</td>
+                          <td>{{ $team->name }}</td>
+                          <td>{{$team->username}}</td>
+                          <td>{{$team->email}}</td>
                           <td>
-                            <img src="{{ asset('admin/images/edit.png') }}" alt="Edit"></td>
+                           @if($team->active)
+                            yes
+                            @else
+                            No
+                            @endif 
+                          </td>
+                       <td><a href="{{ route('edit_team', [$team->id]) }}" >
+                            <img  src="{{ asset('admin/images/edit.png') }}" alt="Edit">
+                          </a>
+                        </td>
+                          
+                      
+                           </td>
+                          <td><a href="{{route('delete_team' ,[$team->id]) }}" >
+                            <img src="{{ asset('admin/images/delete.png') }}" alt="Delete">
+                        </a>
+                        </td>
+                            <td><a href="{{route('show_team' ,[$team->id]) }}">Show</a></td>
                         </tr>
+                     @endforeach
                       </tbody>
                     </table>
                   </div>
